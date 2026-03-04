@@ -1,5 +1,6 @@
 #!/usr/bin/env python3.12
 import unittest
+from sys import stderr, exit
 
 def prime_factors(n: int) -> list[list[int]]:
     """
@@ -53,13 +54,23 @@ class TestFactor(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    try:
-        a = int(input('Enter number: '))
-        result = prime_factors(a)
-        print(result)
-        
-    except ValueError:
-        print("\nValue error received")
-   
+    while True:
+        try:
+            a = int(input('Enter number: '))
+            result = prime_factors(a)
+            print(result)
+            break
+        except ValueError as e:
+            print(f"Value error received:\n{e}", file=stderr)
+        except KeyboardInterrupt:
+            print("KeyboardInterrupt received")
+            exit()
+        except EOFError:
+            print("EOFError received")
+            exit()
+        except Exception as e:
+            print(f"Ошибка:\n{e}", file=stderr)
+            exit()
 
-    print('Tests:', unittest.main())
+    print('Тесты:')
+    unittest.main()
