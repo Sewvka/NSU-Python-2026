@@ -1,6 +1,6 @@
 #!/usr/bin/env python3.12
 import unittest
-import sys
+from sys import stderr, exit
 from typing import List
 
 
@@ -39,6 +39,16 @@ if __name__ == '__main__':
             print('Результат:', result)
             break
         except ValueError as e:
-            print(f'Входные данные не числа:\n {e}')
-    print('Тесты:', unittest.main())
+            print(f'Входные данные не числа:\n {e}', file=stderr)
+        except KeyboardInterrupt:
+            print("KeyboardInterrupt received")
+            exit()
+        except EOFError:
+            print("EOFError received")
+            exit()
+        except Exception as e:
+            print(f"Ошибка:\n {e}")
+            exit()
+    print('Тесты:')
+    unittest.main()
 
