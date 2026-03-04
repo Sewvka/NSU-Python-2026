@@ -1,6 +1,7 @@
 #!/usr/bin/env python3.12
 
 import unittest
+from sys import stderr, exit
 
 
 def collatz_sequence(n: int):
@@ -47,7 +48,7 @@ if __name__ == '__main__':
             print(" → ".join(map(str, sequence)))
             break
         except ValueError as e:
-            print(f"Ошибка: {e}")
+            print(f"Ошибка: {e}", file=stderr)
         except KeyboardInterrupt:
             print("KeyboardInterrupt received")
             exit()
@@ -55,7 +56,7 @@ if __name__ == '__main__':
             print("EOFError received")
             exit()
         except Exception as e:
-            print(f"Ошибка:\n {e}")
+            print(f"Ошибка:\n {e}", file=stderr)
             exit()
     print("Тесты:")
     unittest.main()
