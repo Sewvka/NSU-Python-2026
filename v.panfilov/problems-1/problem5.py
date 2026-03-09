@@ -63,10 +63,10 @@ if __name__ == '__main__':
         except ValueError as e:
             print(f"Value error received:\n{e}", file=stderr)
         except KeyboardInterrupt:
-            print("KeyboardInterrupt received")
+            print("KeyboardInterrupt received", file=stderr)
             exit()
         except EOFError:
-            print("EOFError received")
+            print("EOFError received", file=stderr)
             exit()
         except Exception as e:
             print(f"Ошибка:\n{e}", file=stderr)
