@@ -1,7 +1,6 @@
 #!/usr/bin/env python3.12
 import unittest
 from sys import stderr, exit
-from typing import List
 
 
 def cumulative_sums(numbers):
@@ -30,6 +29,20 @@ class TestSums(unittest.TestCase):
     def test_5(self):
         self.assertEqual(cumulative_sums([1.5, 2.5, 3.5]), [0, 1.5, 4.0, 7.5])
 
+    def test_6(self):
+        self.assertEqual(cumulative_sums([-1, -2, -3]), [0, -1, -3, -6])
+
+    def test_7(self):
+        self.assertEqual(cumulative_sums([1, -1, 2, -2]), [0, 1, 0, 2, 0])
+
+    def test_8(self):
+        self.assertEqual(cumulative_sums([42]), [0, 42])
+
+    def test_9(self):
+        self.assertEqual(cumulative_sums([0, 0, 0]), [0, 0, 0, 0])
+
+    
+
 if __name__ == '__main__':
     while True:
         try:
@@ -41,13 +54,13 @@ if __name__ == '__main__':
         except ValueError as e:
             print(f'Входные данные не числа:\n {e}', file=stderr)
         except KeyboardInterrupt:
-            print("KeyboardInterrupt received")
+            print("KeyboardInterrupt received", file=stderr)
             exit()
         except EOFError:
-            print("EOFError received")
+            print("EOFError received", file=stderr)
             exit()
         except Exception as e:
-            print(f"Ошибка:\n {e}")
+            print(f"Ошибка:\n {e}", file=stderr)
             exit()
     print('Тесты:')
     unittest.main()
