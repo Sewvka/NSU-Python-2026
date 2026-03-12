@@ -1,5 +1,4 @@
 #!/usr/bin/env python3.12
-import unittest
 from sys import stderr, exit
 
 
